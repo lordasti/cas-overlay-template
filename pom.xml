@@ -70,7 +70,7 @@
         <cas.version>5.3.14</cas.version>
         <springboot.version>1.5.18.RELEASE</springboot.version>
         <!-- app.server could be -jetty, -undertow, -tomcat, or blank if you plan to provide appserver -->
-        <app.server>-tomcat</app.server>
+        <app.server>-jetty</app.server>
 
         <mainClassName>org.springframework.boot.loader.WarLauncher</mainClassName>
         <isExecutable>false</isExecutable>
