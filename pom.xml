@@ -70,7 +70,7 @@
         <cas.version>5.3.14</cas.version>
         <springboot.version>1.5.18.RELEASE</springboot.version>
         <!-- app.server could be -jetty, -undertow, -tomcat, or blank if you plan to provide appserver -->
-        <app.server>-jetty</app.server>
+        <app.server>-tomcat</app.server>
 
         <mainClassName>org.springframework.boot.loader.WarLauncher</mainClassName>
         <isExecutable>false</isExecutable>
@@ -79,6 +79,10 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <!-- properties que están o deben estar en aytos-raiz -->
+        <oracle.version>12.1.0.1</oracle.version>
+        <aytos.arquitectura.version>1.0.0-SNAPSHOT</aytos.arquitectura.version>
     </properties>
 
     <repositories>
@@ -114,7 +118,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <id>default</id>
-            <dependencies>
+            <dependencies>                                                          
                 <dependency>
                     <groupId>org.apereo.cas</groupId>
                     <artifactId>cas-server-webapp${app.server}</artifactId>
@@ -124,7 +128,83 @@
                 </dependency>
                 <!--
                 ...Additional dependencies may be placed here...
-                -->
+                -->                                
+                <dependency>
+                    <groupId>com.oracle</groupId>
+                    <artifactId>ojdbc7</artifactId>
+                    <version>${oracle.version}</version>                    
+                </dependency>
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-core-authentication-api</artifactId>
+                    <version>${cas.version}</version>                    
+                </dependency>
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-core-api-authentication</artifactId>
+                    <version>${cas.version}</version>                    
+                </dependency>      
+                
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-support-ldap</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-support-jdbc</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-support-jdbc-authentication</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                
+                <dependency>
+		            <groupId>es.aytos.arquitectura.comun</groupId>
+		            <artifactId>aytos-comun-modelo</artifactId>
+		            <version>${aytos.arquitectura.version}</version>
+		            <exclusions>
+		                <exclusion>
+		                    <artifactId>spring-context</artifactId>
+		                    <groupId>org.springframework</groupId>
+		                </exclusion>
+		                <exclusion>
+		                    <artifactId>spring-web</artifactId>
+		                    <groupId>org.springframework</groupId>
+		                </exclusion>
+		                <exclusion>
+		                    <artifactId>spring-aop</artifactId>
+		                    <groupId>org.springframework</groupId>
+		                </exclusion>
+		                <exclusion>
+		                    <artifactId>spring-context-support</artifactId>
+		                    <groupId>org.springframework</groupId>
+		                </exclusion>
+		                <exclusion>
+		                    <artifactId>spring-beans</artifactId>
+		                    <groupId>org.springframework</groupId>
+		                </exclusion>
+		                <exclusion>
+		                    <artifactId>spring-core</artifactId>
+		                    <groupId>org.springframework</groupId>
+		                </exclusion>
+		                <exclusion>
+		                    <artifactId>spring-security-core</artifactId>
+		                    <groupId>org.springframework.security</groupId>
+		                </exclusion>
+		                <exclusion>
+		                    <groupId>org.springframework</groupId>
+		                    <artifactId>spring-aspects</artifactId>
+		                </exclusion>
+		                <exclusion>
+		                    <artifactId>bcprov-jdk15on</artifactId>
+		                    <groupId>org.bouncycastle</groupId>
+		                </exclusion>
+		            </exclusions>
+		        </dependency>
             </dependencies>
         </profile>
 
